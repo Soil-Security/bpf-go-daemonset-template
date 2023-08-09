@@ -1,0 +1,4 @@
+.output/
+
+daemon
+daemon.bpf.o
