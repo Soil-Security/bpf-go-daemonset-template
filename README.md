@@ -1,10 +1,12 @@
 # bpf-daemonset-template
 
-A GitHub [template] repository with the scaffolding for a BPF program that is
+A GitHub [template] repository with the scaffolding for a BPF senosr that is
 run on a Kubernetes cluster, i.e. deployed as a [DaemonSet] on each cluster
 node. The BPF program traces [execve(2)] system calls and sends events from
 kernel to user space through a [BPF ring buffer], and prints them to the
-standard output.
+standard output. The BPF sensor is written in C with [libbpf/libbpf] and is
+compiled with [LLVM] and [Clang]. BPF objects are loaded and managed from user
+space with [cilium/ebpf].
 
 ``` console
 $ kubectl logs -f -n bpf-system daemonset/bpf-daemonset
@@ -112,3 +114,7 @@ kubectl delete -f kube/bpf.daemonset.yml
 [execve(2)]: https://man7.org/linux/man-pages/man2/execve.2.html
 [template]: https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template/
 [BPF ring buffer]: https://www.kernel.org/doc/html/next/bpf/ringbuf.html
+[libbpf/libbpf]: https://github.com/libbpf/libbpf/
+[cilium/ebpf]: https://github.com/cilium/ebpf/
+[LLVM]: https://llvm.org/
+[Clang]: https://clang.llvm.org/
