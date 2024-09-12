@@ -67,7 +67,7 @@ format:
 
 .PHONY: image
 image:
-	$(DOCKER) image build --no-cache -t docker.io/danielpacak/bpf-daemonset-template:$(IMAGE_TAG) .
+	$(DOCKER) image build --no-cache -t docker.io/soilsecurity/bpf-daemonset-template:$(IMAGE_TAG) .
 
 # delete failed targets
 .DELETE_ON_ERROR:

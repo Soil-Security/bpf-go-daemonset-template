@@ -74,7 +74,7 @@ kind create cluster \
 ```
 
 ```
-kind load docker-image danielpacak/bpf-daemonset-template:latest
+kind load docker-image soilsecurity/bpf-daemonset-template:latest
 ```
 
 ```

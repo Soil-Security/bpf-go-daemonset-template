@@ -1,6 +1,6 @@
-FROM alpine:3
+FROM ubuntu
 
-ADD daemon /root/
-ADD daemon.bpf.o /root
+ADD daemon /usr/bin/daemon
+ADD daemon.bpf.o /usr/bin/daemon.bpf.o
 
-ENTRYPOINT ["/root/daemon"]
+ENTRYPOINT ["daemon"]
