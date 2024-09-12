@@ -20,12 +20,12 @@ space with [cilium/ebpf].
 2. Create a test cluster and wait until its node is ready:
    ```
    kind create cluster \
-     --image="kindest/node:v1.27.3@sha256:3966ac761ae0136263ffdb6cfd4db23ef8a83cba8a463690e98317add2c9ba72"
+     --image="kindest/node:v1.30.4@sha256:976ea815844d5fa93be213437e3ff5754cd599b040946b5cca43ca45c2047114"
    ```
    ``` console
    $ kubectl get node
    NAME                 STATUS   ROLES           AGE   VERSION
-   kind-control-plane   Ready    control-plane   35s   v1.27.3
+   kind-control-plane   Ready    control-plane   57s   v1.30.4
    ```
 3. Compile sources and build the docker container image:
    ```
@@ -33,7 +33,7 @@ space with [cilium/ebpf].
    cd bpf-daemonset-template
    ```
    ```
-   make all image
+   make image
    ```
 4. Load the docker container image from host into all cluster nodes:
    ```

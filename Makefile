@@ -53,7 +53,7 @@ daemon.bpf.o: daemon.h daemon.bpf.c $(LIBBPF_OBJ) | $(OUTPUT)
 	$(LLVM_STRIP) -g $@
 
 daemon: daemon.bpf.o main.go
-	$(GO) build -o $@ main.go
+	CGO_ENABLED=0 GOOS=$(GOOS) GOARCH=$(GOARCH) $(GO) build -o $@ main.go
 
 .PHONY: $(VMLINUX)
 $(VMLINUX): $(BPFTOOL)
@@ -67,7 +67,7 @@ format:
 
 .PHONY: image
 image:
-	$(DOCKER) image build --no-cache -t docker.io/soilsecurity/bpf-daemonset-template:$(IMAGE_TAG) .
+	$(DOCKER) buildx build -f Dockerfile -t docker.io/soilsecurity/bpf-daemonset-template:$(IMAGE_TAG) .
 
 # delete failed targets
 .DELETE_ON_ERROR:
