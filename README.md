@@ -66,19 +66,6 @@ space with [cilium/ebpf].
    kind cluster delete
    ```
 
-## Resources
-
-* https://loft.sh/blog/tutorial-how-ebpf-improves-observability-within-kubernetes/
-* https://github.com/iovisor/gobpf/blob/master/examples/bcc/execsnoop/execsnoop.go/
-* https://github.com/iovisor/bcc/blob/master/libbpf-tools/execsnoop.bpf.c/
-* https://github.com/iovisor/bcc/blob/master/libbpf-tools/execsnoop.c/
-* https://medium.com/@calavera/spy-on-your-kubernetes-cluster-with-bpf-b09032bd1cdc/
-* https://qmonnet.github.io/whirl-offload/2021/09/23/bpftool-features-thread/
-* https://www.groundcover.com/blog/what-is-ebpf/
-* https://www.form3.tech/engineering/content/bypassing-ebpf-tools/
-* https://www.pingcap.com/blog/tips-and-tricks-for-writing-linux-bpf-applications-with-libbpf/
-* [Cgroup Iter: A step toward container-oriented observability - Hao Luo](https://www.youtube.com/watch?v=i-a9a6cZm20)
-
 [DaemonSet]: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
 [execve(2)]: https://man7.org/linux/man-pages/man2/execve.2.html
 [template]: https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template/
