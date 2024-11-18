@@ -41,8 +41,8 @@ $(OUTPUT) $(OUTPUT)/libbpf $(BPFTOOL_OUTPUT):
 
 $(LIBBPF_OBJ): $(wildcard $(LIBBPF_SRC)/*.[ch] $(LIBBPF_SRC)/Makefile) | $(OUTPUT)/libbpf
 	$(MAKE) -C $(LIBBPF_SRC) BUILD_STATIC_ONLY=1 \
-		OBJDIR=$(dir $@)/libbpf DESTDIR=$(dir $@)    \
-		INCLUDEDIR= LIBDIR= UAPIDIR=                 \
+		OBJDIR=$(dir $@)/libbpf DESTDIR=$(dir $@) \
+		INCLUDEDIR= LIBDIR= UAPIDIR= \
 		install
 
 $(BPFTOOL): | $(BPFTOOL_OUTPUT)
@@ -68,6 +68,18 @@ format:
 .PHONY: image
 image:
 	$(DOCKER) buildx build -f Dockerfile -t docker.io/soilsecurity/bpf-daemonset-template:$(IMAGE_TAG) .
+
+.PHONY: unit-tests
+unit-tests:
+	@echo "Running unit tests ..."
+
+.PHONY: integration-tests
+integration-tests:
+	@echo "Running integration tests ..."
+
+.PHONY: e2e-tests
+e2e-tests:
+	@echo "Running end-to-end tests ..."
 
 # delete failed targets
 .DELETE_ON_ERROR:

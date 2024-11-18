@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM golang:1.23-bullseye@sha256:45b43371f21ec51276118e6806a22cbb0bca087ddd54c491fdc7149be01035d5 as builder
+FROM --platform=$BUILDPLATFORM golang:1.23-bullseye@sha256:45b43371f21ec51276118e6806a22cbb0bca087ddd54c491fdc7149be01035d5 AS builder
 RUN apt-get update && apt-get install --yes pkgconf libelf-dev llvm clang
 WORKDIR /src
 ARG TARGETOS TARGETARCH
