@@ -18,7 +18,8 @@ ARCH ?= $(shell uname -m | sed 's/x86_64/x86/' | sed 's/aarch64/arm64/')
 BTFFILE = /sys/kernel/btf/vmlinux
 VMLINUX := ./vmlinux/$(ARCH)/vmlinux.h
 
-IMAGE_TAG ?= latest
+IMAGE_NAME = danielpacak/bpf-go-daemonset-template
+IMAGE_TAG = latest
 
 # Use our own libbpf API headers and Linux UAPI headers distributed with
 # libbpf to avoid dependency on system-wide headers, which could be missing or
@@ -67,7 +68,7 @@ format:
 
 .PHONY: image
 image:
-	$(DOCKER) buildx build -f Dockerfile -t docker.io/soilsecurity/bpf-daemonset-template:$(IMAGE_TAG) .
+	$(DOCKER) buildx build -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_TAG) .
 
 .PHONY: unit-tests
 unit-tests:

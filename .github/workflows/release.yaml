@@ -1,0 +1,53 @@
+---
+# This workflow is triggered whenever a new release of bpf-go-daemonset is
+# initiated by creating an annotated Git tag and pushing it to the upstream Git
+# repository.
+#
+# git tag -a v0.0.1-rc1 -m 'Release v0.0.1-rc1'
+# git push upstream v0.0.1-rc1
+#
+# git tag -a v0.0.1 -m 'Release v0.0.1'
+# git push upstream v0.0.1
+name: Release
+
+on:
+  workflow_dispatch: { }
+  push:
+    tags:
+      - "v*"
+jobs:
+  release:
+    runs-on: ubuntu-22.04
+    env:
+      DOCKER_BUILDKIT: 1
+      DOCKER_CLI_EXPERIMENTAL: "enabled"
+      PLATFORMS: linux/amd64
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Available platforms
+        run: echo ${{ steps.buildx.outputs.platforms }}
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          tags: |
+            danielpacak/bpf-go-daemonset-template:latest
+          push: ${{ github.event_name != 'pull_request' }}
+          platforms: ${{ env.PLATFORMS }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

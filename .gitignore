@@ -4,3 +4,4 @@ daemon
 daemon.bpf.o
 
 .vscode/
+.idea/

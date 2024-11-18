@@ -1,4 +1,4 @@
-# bpf-daemonset-template
+# bpf-go-daemonset-template
 
 A GitHub [template] repository with the scaffolding for a BPF sensor that is
 run on a Kubernetes cluster, i.e. deployed as a [DaemonSet] on each cluster
@@ -29,17 +29,17 @@ space with [cilium/ebpf].
    ```
 3. Compile sources and build the docker container image:
    ```
-   git clone --recurse-submodules https://github.com/Soil-Security/bpf-daemonset-template.git
-   cd bpf-daemonset-template
+   git clone --recurse-submodules https://github.com/Soil-Security/bpf-go-daemonset-template.git
+   cd bpf-go-daemonset-template
    ```
    ```
    make image
    ```
 4. Load the docker container image from host into all cluster nodes:
    ```
-   kind load docker-image soilsecurity/bpf-daemonset-template:latest
+   kind load docker-image danielpacak/bpf-go-daemonset-template:latest
    ```
-5. Deploy the BPF sensor as a DaemonSet and wait until its rolled out successfully:
+5. Deploy the BPF sensor as a DaemonSet and wait until it's rolled out successfully:
    ```
    kubectl apply -f deploy/kubernetes/all.yml
    ```

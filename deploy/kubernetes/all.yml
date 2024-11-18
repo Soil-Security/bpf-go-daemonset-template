@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: bpf-daemonset
-        image: soilsecurity/bpf-daemonset-template
+        image: danielpacak/bpf-go-daemonset-template:latest
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
