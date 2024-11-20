@@ -37,7 +37,7 @@ jobs:
         run: |
           make integration-tests
   e2e-tests:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
     needs:
       - integration-tests
     steps:
@@ -51,6 +51,9 @@ jobs:
           driver: docker
       - name: Build image
         run: |
+          kubectl get node -o wide
+          uname -r
+          clang -v
           make image
           minikube image load danielpacak/bpf-go-daemonset-template:latest
       - name: Deploy to minikube
